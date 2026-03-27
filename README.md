@@ -95,9 +95,9 @@ $ make ARCH=arm64_glibc OUT_ZIP=void-glibc._arm64.zip
 ### Basic Params
 |  Parameter |  Value  |  Default  |
 | ---- | ---- | ---- |
-|  ARCH  |  x64_glibc,x64_musl,arm64_glibc,arm64_musl  |  |
-|  LNCR_EXE  |  launcher file name  | |
-|  OUT_ZIP  |  zip file name  | |
+|  ARCH  |  x64_glibc,x64_musl,arm64_glibc,arm64_musl  | x64_glibc |
+|  LNCR_EXE  |  launcher file name  | void-glibc.exe |
+|  OUT_ZIP  |  zip file name  | void-glibc.zip |
 |  DLR  |  file downloader  | curl |
 |  DLR_FLAGS  |  downloader flags  | -L |
 |  BASE_URL  |  base rootfs url  | https:~ |

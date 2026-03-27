@@ -1,6 +1,8 @@
 OUT_ZIP=void-glibc.zip
 LNCR_EXE=void-glibc.exe
 
+ARCH=x64_glibc
+
 DLR=curl
 DLR_FLAGS=-L
 LNCR_ZIP_EXE=Void.exe
