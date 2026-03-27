@@ -1,18 +1,18 @@
-# AlpineWSL-Edge
+# VoidWSL
 Forked from [yuk7/AlpineWSL](https://github.com/yuk7/AlpineWSL)
 
-Alpine Linux Edge on WSL (Windows 10 1803 or later)
+Void Linux on WSL (Windows 10 1803 or later)
 based on [wsldl](https://github.com/yuk7/wsldl)
 
-![screenshot](https://github.com/arfshl/AlpineWSL-Edge/raw/main/screenshot.png)
+![screenshot](https://github.com/arfshl/VoidWSL/raw/main/screenshot.png)
 
-[![GitHub Workflow Build Status](https://img.shields.io/github/actions/workflow/status/arfshl/AlpineWSL-Edge/build-zip.yaml?style=flat-square)](https://github.com/arfshl/AlpineWSL-Edge/actions/workflows/build-zip.yaml)
-[![GitHub Workflow Release Status](https://img.shields.io/github/actions/workflow/status/arfshl/AlpineWSL-Edge/release-zip.yaml?style=flat-square)](https://github.com/arfshl/AlpineWSL-Edge/actions/workflows/release-zip.yaml)
-[![Github All Releases](https://img.shields.io/github/downloads/arfshl/AlpineWSL-Edge/total.svg?style=flat-square)](https://github.com/arfshl/AlpineWSL-Edge/releases/latest)
+[![GitHub Workflow Build Status](https://img.shields.io/github/actions/workflow/status/arfshl/VoidWSL/build-zip.yaml?style=flat-square)](https://github.com/arfshl/VoidWSL/actions/workflows/build-zip.yaml)
+[![GitHub Workflow Release Status](https://img.shields.io/github/actions/workflow/status/arfshl/VoidWSL/release-zip.yaml?style=flat-square)](https://github.com/arfshl/VoidWSL/actions/workflows/release-zip.yaml)
+[![Github All Releases](https://img.shields.io/github/downloads/arfshl/VoidWSL/total.svg?style=flat-square)](https://github.com/arfshl/VoidWSL/releases/latest)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-![License](https://img.shields.io/github/license/arfshl/AlpineWSL-Edge.svg?style=flat-square)
+![License](https://img.shields.io/github/license/arfshl/VoidWSL.svg?style=flat-square)
 
-### [Download](https://github.com/arfshl/AlpineWSL-Edge/releases/latest)
+### [Download](https://github.com/arfshl/VoidWSL/releases/latest)
 
 
 ## Requirements
@@ -20,13 +20,17 @@ based on [wsldl](https://github.com/yuk7/wsldl)
 * Windows Subsystem for Linux feature is enabled.
 
 ## Install
-#### 1. [Download](https://github.com/arfshl/AlpineWSL-Edge/releases/latest) installer zip
+#### 1. [Download](https://github.com/arfshl/VoidWSL/releases/latest) installer zip
 
 #### 2. Extract all files in zip file to same directory
 
-#### 3.Run Alpine-Edge.exe to Extract rootfs and Register to WSL
+#### 3.Run void-glibc.exe to Extract rootfs and Register to WSL
 Exe filename is using to the instance name to register.
 If you rename it, you can register with a different name and have multiple installs.
+
+#### 4. It is recommended to install bash
+
+     xbps-install -S xbps && xbps-install bash && bash
 
 
 ## How-to-Use(for Installed Instance)
@@ -71,12 +75,12 @@ Usage :
 
 #### How to uninstall instance
 ```dos
->Alpine-Edge.exe clean
+>void-glibc.exe clean
 
 ```
 
 ## How-to-Build
-AlpineWSL can build on GNU/Linux or WSL.
+VoidWSL can build on GNU/Linux or WSL.
 
 `curl`,`bsdtar`,`tar`(gnu) and `sudo` is required for build.
 ```shell
@@ -85,15 +89,15 @@ $ make
 
 with flags:
 ```
-$ make ARCH=arm64 OUT_ZIP=Alpine-Edge_arm64.zip
+$ make ARCH=arm64 OUT_ZIP=void-glibc._arm64.zip
 ```
 
 ### Basic Params
 |  Parameter |  Value  |  Default  |
 | ---- | ---- | ---- |
-|  ARCH  |  x64/arm64  | x64 |
-|  LNCR_EXE  |  launcher file name  | Alpine-Edge.exe |
-|  OUT_ZIP  |  zip file name  | Alpine.zip |
+|  ARCH  |  x64_glibc,x64_musl,arm64_glibc,arm64_musl  |  |
+|  LNCR_EXE  |  launcher file name  | |
+|  OUT_ZIP  |  zip file name  | |
 |  DLR  |  file downloader  | curl |
 |  DLR_FLAGS  |  downloader flags  | -L |
 |  BASE_URL  |  base rootfs url  | https:~ |
