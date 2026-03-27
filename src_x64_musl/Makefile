@@ -4,7 +4,7 @@ LNCR_EXE=void-musl.exe
 DLR=curl
 DLR_FLAGS=-L
 BASE_URL=https://repo-default.voidlinux.org/live/current/void-x86_64-musl-ROOTFS-20250202.tar.xz
-LNCR_ZIP_URL=https://github.com/yuk7/wsldl/releases/download/26032000/icons_arm64.zip
+LNCR_ZIP_URL=https://github.com/yuk7/wsldl/releases/download/26032000/icons.zip
 LNCR_ZIP_EXE=Void.exe
 
 all: $(OUT_ZIP)
