@@ -89,7 +89,7 @@ $ make
 
 with flags:
 ```
-$ make ARCH=arm64_glibc OUT_ZIP=void-glibc._arm64.zip
+$ make ARCH=arm64_glibc OUT_ZIP=void-glibc_arm64.zip
 ```
 
 ### Basic Params
