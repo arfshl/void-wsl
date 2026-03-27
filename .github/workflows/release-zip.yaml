@@ -1,0 +1,138 @@
+name: Release Zip CI
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+    - name: Install dependencies for build (Apt)
+      shell: bash
+      run: |
+        sudo env DEBIAN_FRONTEND=noninteractive apt update -y && \
+        sudo env DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends libarchive-tools curl jq tree
+
+    - name: Build Zip glibc x64
+      shell: bash
+      env:
+        ARCH: 'x64'
+        OUT_ZIP: 'void-glibc.zip'
+      run: cd src_x64_glibc && make -j$(nproc) -e && sha256sum void-glibc.zip | tee void-glibc.zip.sha256 && mv void-glibc.zip void-glibc.zip.sha256 ../
+
+    - name: Build Zip glibc ARM64
+      shell: bash
+      env:
+        ARCH: 'arm64'
+        OUT_ZIP: 'void-glibc_arm64.zip'
+      run: cd src_arm64_glibc && make -j$(nproc) -e && sha256sum void-glibc_arm64.zip | tee void-glibc_arm64.zip.sha256 && mv void-glibc_arm64.zip void-glibc_arm64.zip.sha256 ../
+
+    - name: Build Zip musl x64
+      shell: bash
+      env:
+        ARCH: 'x64'
+        OUT_ZIP: 'void-musl.zip'
+      run: cd src_x64_musl && make -j$(nproc) -e && sha256sum void-musl.zip | tee void-musl.zip.sha256 && mv void-musl.zip void-musl.zip.sha256 ../   
+    - name: Build Zip musl ARM64
+      shell: bash
+      env:
+        ARCH: 'arm64'
+        OUT_ZIP: 'void-musl_arm64.zip'
+      run: cd src_arm64_musl && make -j$(nproc) -e && sha256sum void-musl_arm64.zip | tee void-musl_arm64.zip.sha256 && mv void-musl_arm64.zip void-musl_arm64.zip.sha256 ../
+
+    - name: Upload a Build Artifact x64 glibc
+      uses: actions/upload-artifact@main
+      with:
+        name: void-glibc.zip
+        path: ./void-glibc.zip
+    - name: Upload SHA256 Checksum x64 glibc
+      uses: actions/upload-artifact@main
+      with:
+        name: void-glibc.zip.sha256
+        path: ./void-glibc.zip.sha256
+    - name: Upload a Build Artifact ARM64 glibc
+      uses: actions/upload-artifact@main
+      with:
+        name: void-glibc_arm64.zip
+        path: ./void-glibc_arm64.zip
+    - name: Upload SHA256 Checksum ARM64 glibc
+      uses: actions/upload-artifact@main
+      with:
+        name: void-glibc_arm64.zip.sha256
+        path: ./void-glibc_arm64.zip.sha256
+
+    - name: Upload a Build Artifact x64 musl
+      uses: actions/upload-artifact@main
+      with:
+        name: void-musl.zip
+        path: ./void-musl.zip
+    - name: Upload SHA256 Checksum x64 musl
+      uses: actions/upload-artifact@main
+      with:
+        name: void-musl.zip.sha256
+        path: ./void-musl.zip.sha256
+    - name: Upload a Build Artifact ARM64 musl
+      uses: actions/upload-artifact@main
+      with:
+        name: void-musl_arm64.zip
+        path: ./void-musl_arm64.zip
+    - name: Upload SHA256 Checksum ARM64 musl
+      uses: actions/upload-artifact@main
+      with:
+        name: void-musl_arm64.zip.sha256
+        path: ./void-musl_arm64.zip.sha256
+
+  Release:
+    needs: [Build]
+    runs-on: ubuntu-24.04
+    steps:
+    - name: Download Build Artifact x64 glibc
+      uses: actions/download-artifact@main
+      with:
+        name: void-glibc.zip
+    - name: Download SHA256 Checksum x64 glibc
+      uses: actions/download-artifact@main
+      with:
+        name: void-glibc.zip.sha256
+    - name: Download Build Artifact ARM64 glibc
+      uses: actions/download-artifact@main
+      with:
+        name: void-glibc_arm64.zip
+    - name: Download SHA256 Checksum ARM64 glibc
+      uses: actions/download-artifact@main
+      with:
+        name: void-glibc_arm64.zip.sha256
+
+    - name: Download Build Artifact x64 musl
+      uses: actions/download-artifact@main
+      with:
+        name: void-musl.zip
+    - name: Download SHA256 Checksum x64 musl
+      uses: actions/download-artifact@main
+      with:
+        name: void-musl.zip.sha256
+    - name: Download Build Artifact ARM64 musl
+      uses: actions/download-artifact@main
+      with:
+        name: void-musl_arm64.zip
+    - name: Download SHA256 Checksum ARM64 musl
+      uses: actions/download-artifact@main
+      with:
+        name: void-musl_arm64.zip.sha256
+
+    - name: Push to Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ github.ref_name }}
+        name: Release ${{ github.ref_name }}
+        files: |
+          void*.zip*
+        preserve_order: true
+        make_latest: true
