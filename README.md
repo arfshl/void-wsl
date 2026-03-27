@@ -24,7 +24,7 @@ based on [wsldl](https://github.com/yuk7/wsldl)
 
 #### 2. Extract all files in zip file to same directory
 
-#### 3.Run void-glibc.exe to Extract rootfs and Register to WSL
+#### 3.Run void-glibc.exe (or void-musl.exe) to Extract rootfs and Register to WSL
 Exe filename is using to the instance name to register.
 If you rename it, you can register with a different name and have multiple installs.
 
@@ -80,7 +80,7 @@ Usage :
 ```
 
 ## How-to-Build
-VoidWSL can build on GNU/Linux or WSL.
+VoidWSL can build on GNU/Linux or WSL, for this example we build arm64 version of void-glibc
 
 `curl`,`bsdtar`,`tar`(gnu) and `sudo` is required for build.
 ```shell
@@ -89,7 +89,7 @@ $ make
 
 with flags:
 ```
-$ make ARCH=arm64 OUT_ZIP=void-glibc._arm64.zip
+$ make ARCH=arm64_glibc OUT_ZIP=void-glibc._arm64.zip
 ```
 
 ### Basic Params
