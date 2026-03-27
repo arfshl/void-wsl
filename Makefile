@@ -1,18 +1,6 @@
-OUT_ZIP=void-glibc.zip
-LNCR_EXE=void-glibc.exe
-
-ARCH=x64_glibc
-
-x64: x64_glibc
-
-DLR=curl
-DLR_FLAGS=-L
-LNCR_ZIP_EXE=Void.exe
-
 all: $(OUT_ZIP)
 
 zip: $(OUT_ZIP)
-$(OUT_ZIP): $(ARCH)
 
 x64_glibc:
 	cd src_x64_glibc && $(MAKE)
