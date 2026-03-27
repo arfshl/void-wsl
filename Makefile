@@ -11,19 +11,19 @@ zip: $(OUT_ZIP)
 $(OUT_ZIP): $(ARCH)
 
 x64_glibc:
-	cd src_x64_glibc && $(MAKE) ARCH=x64_glibc
+	cd src_x64_glibc && $(MAKE)
 	mv src_x64_glibc/$(OUT_ZIP) ./
 
 arm64_glibc:
-	cd src_arm64_glibc && $(MAKE) ARCH=arm64_glibc
+	cd src_arm64_glibc && $(MAKE)
 	mv src_arm64_glibc/$(OUT_ZIP) ./
 
 x64_musl:
-	cd src_x64_musl && $(MAKE) ARCH=x64_musl
+	cd src_x64_musl && $(MAKE)
 	mv src_x64_musl/$(OUT_ZIP) ./
 
 arm64_musl:
-	cd src_arm64_musl && $(MAKE) ARCH=arm64_musl
+	cd src_arm64_musl && $(MAKE)
 	mv src_arm64_musl/$(OUT_ZIP) ./
 
 clean:

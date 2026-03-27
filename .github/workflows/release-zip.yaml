@@ -23,27 +23,27 @@ jobs:
     - name: Build Zip glibc x64
       shell: bash
       env:
-        ARCH: 'x64'
+        ARCH: 'x64_glibc'
         OUT_ZIP: 'void-glibc.zip'
       run: cd src_x64_glibc && make -j$(nproc) -e && sha256sum void-glibc.zip | tee void-glibc.zip.sha256 && mv void-glibc.zip void-glibc.zip.sha256 ../
 
     - name: Build Zip glibc ARM64
       shell: bash
       env:
-        ARCH: 'arm64'
+        ARCH: 'arm64_glibc'
         OUT_ZIP: 'void-glibc_arm64.zip'
       run: cd src_arm64_glibc && make -j$(nproc) -e && sha256sum void-glibc_arm64.zip | tee void-glibc_arm64.zip.sha256 && mv void-glibc_arm64.zip void-glibc_arm64.zip.sha256 ../
 
     - name: Build Zip musl x64
       shell: bash
       env:
-        ARCH: 'x64'
+        ARCH: 'x64_musl'
         OUT_ZIP: 'void-musl.zip'
       run: cd src_x64_musl && make -j$(nproc) -e && sha256sum void-musl.zip | tee void-musl.zip.sha256 && mv void-musl.zip void-musl.zip.sha256 ../   
     - name: Build Zip musl ARM64
       shell: bash
       env:
-        ARCH: 'arm64'
+        ARCH: 'arm64_musl'
         OUT_ZIP: 'void-musl_arm64.zip'
       run: cd src_arm64_musl && make -j$(nproc) -e && sha256sum void-musl_arm64.zip | tee void-musl_arm64.zip.sha256 && mv void-musl_arm64.zip void-musl_arm64.zip.sha256 ../
 
