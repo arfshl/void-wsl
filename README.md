@@ -28,7 +28,7 @@ based on [wsldl](https://github.com/yuk7/wsldl)
 Exe filename is using to the instance name to register.
 If you rename it, you can register with a different name and have multiple installs.
 
-#### 4. It is recommended to install bash
+#### 4. It is recommended to install bash (arm64 only, this is already included for amd64)
 
      xbps-install -S xbps && xbps-install bash && bash
 
