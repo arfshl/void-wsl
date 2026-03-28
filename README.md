@@ -80,7 +80,7 @@ Usage :
 ```
 
 ## How-to-Build
-VoidWSL can build on GNU/Linux or WSL, for this example we build arm64 version of void-glibc
+VoidWSL can build on GNU/Linux or WSL, for this example we build arm64 version of void-glibc.
 
 `curl`,`bsdtar`,`tar`(gnu) and `sudo` is required for build.
 ```shell
