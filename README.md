@@ -102,3 +102,9 @@ $ make ARCH=arm64_glibc OUT_ZIP=void-glibc_arm64.zip
 |  DLR_FLAGS  |  downloader flags  | -L |
 |  BASE_URL  |  base rootfs url  | https:~ |
 |  ROOTFS_TARBALL_CKSM_URL  |  sha-sum for the base rootfs tarball  |  https:~ |
+
+[![AlpineWSL-edge](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=alpinewsl-edge&theme=transparent)](https://github.com/arfshl/alpinewsl-edge)
+[![debianwsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=debianwsl&theme=transparent)](https://github.com/arfshl/debianwsl)
+[![debianwsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=ubuntu-latest-wsl&theme=transparent)](https://github.com/arfshl/ubuntu-latest-wsl)
+[![devuanwsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=devuanwsl&theme=transparent)](https://github.com/arfshl/devuanwsl)
+[![trisquelwsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=trisquelwsl&theme=transparent)](https://github.com/arfshl/trisquelwsl)
