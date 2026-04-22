@@ -2,7 +2,7 @@
 
 set -ue
 
-DEFAULT_GROUPS='adm,cdrom,plugdev,wheel'
+# DEFAULT_GROUPS='adm,cdrom,plugdev,wheel'
 DEFAULT_UID='1000'
 
 echo 'Please create a default UNIX user account. The username does not need to match your Windows username.'
@@ -21,7 +21,7 @@ while true; do
   # Create the user
   if /usr/sbin/useradd --uid "$DEFAULT_UID" "$username"; then
 
-    if /usr/sbin/usermod -aG "$username" $DEFAULT_GROUPS; then
+    if /usr/sbin/usermod -aG "$username" wheel; then
       break
     else
       /usr/sbin/userdel "$username"
