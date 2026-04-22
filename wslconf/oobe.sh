@@ -2,7 +2,7 @@
 
 set -ue
 
-# DEFAULT_GROUPS='adm,cdrom,plugdev,wheel'
+DEFAULT_GROUPS='adm,cdrom,plugdev,wheel'
 DEFAULT_UID='1000'
 
 echo 'Please create a default UNIX user account. The username does not need to match your Windows username.'
@@ -18,19 +18,18 @@ while true; do
   # Prompt from the username
   read -p 'Enter new UNIX username: ' username
 
-  # Create the user
-  if /usr/sbin/useradd --uid "$DEFAULT_UID" "$username"; then
-
-    if /usr/sbin/usermod -aG "$username" sudo; then
+  if /usr/sbin/useradd -m -u "$DEFAULT_UID" -G "$DEFAULT_GROUPS" -s /bin/bash "$username"; then
+    if passwd "$username"; then
       break
     else
-      /usr/sbin/userdel "$username"
+      /usr/sbin/userdel -r "$username"
     fi
   fi
 done
 
-chsh -s bash "$username"
+chsh -s /bin/bash "$username"
+chsh -s /bin/bash root
 
 cat > /etc/sudoers.d/wsluser << EOF
-"$username" ALL=(ALL:ALL) ALL
+%wheel ALL=(ALL:ALL) ALL
 EOF
