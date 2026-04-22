@@ -19,7 +19,7 @@ while true; do
   read -p 'Enter new UNIX username: ' username
 
   # Create the user
-  if /usr/sbin/useradd -D --uid "$DEFAULT_UID" "$username"; then
+  if /usr/sbin/useradd --uid "$DEFAULT_UID" "$username"; then
 
     if /usr/sbin/usermod -aG "$username" $DEFAULT_GROUPS; then
       break
