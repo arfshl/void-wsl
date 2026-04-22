@@ -21,7 +21,7 @@ while true; do
   # Create the user
   if /usr/sbin/useradd --uid "$DEFAULT_UID" "$username"; then
 
-    if /usr/sbin/usermod -aG "$username" wheel; then
+    if /usr/sbin/usermod -aG "$username" sudo; then
       break
     else
       /usr/sbin/userdel "$username"
@@ -32,5 +32,5 @@ done
 chsh -s bash "$username"
 
 cat > /etc/sudoers.d/wsluser << EOF
-%wheel ALL=(ALL:ALL) ALL
+"$username" ALL=(ALL:ALL) ALL
 EOF
