@@ -59,10 +59,10 @@ sudo chroot ./voidwsl-musl xbps-install -u -y xbps
 sudo chroot ./voidwsl-musl xbps-install bash sudo shadow -y
 EOF
 
-cd ./voidwsl
+cd ../voidwsl
 sudo tar --numeric-owner --absolute-names -c  * | gzip --best > ../install.tar.gz
 mv ../install.tar.gz ../void-glibc-$ARCH.wsl
 
-cd ./voidwsl-musl
+cd ../voidwsl-musl
 sudo tar --numeric-owner --absolute-names -c  * | gzip --best > ../install.tar.gz
 mv ../install.tar.gz ../void-musl-$ARCH.wsl
