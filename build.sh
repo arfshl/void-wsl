@@ -11,7 +11,7 @@ case "$ARCH" in
         exit 1
         ;;
 esac
-echo "RELEASE_EDGE=$RELEASE" >> "$GITHUB_OUTPUT"
+echo "RELEASE=$RELEASE" >> "$GITHUB_OUTPUT"
 echo "ARCH=$ARCH" >> "$GITHUB_OUTPUT"
 
 
