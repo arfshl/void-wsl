@@ -60,8 +60,8 @@ jobs:
       - name: Release stable
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: ${{ needs.build-x86_64.outputs.RELEASE }}
-          name: ${{ needs.build-x86_64.outputs.RELEASE }}
+          tag_name: latest
+          name: latest
           files: |
             aarch64/void-*.wsl
             x86_64/void-*.wsl

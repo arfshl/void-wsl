@@ -1,6 +1,8 @@
 # Void WSL
 Void Linux on WSL
 
+Based on [Official Void docker image](https://github.com/void-linux/void-containers)
+
 [![Build](https://github.com/arfshl/void-wsl/actions/workflows/build.yml/badge.svg)](https://github.com/arfshl/void-wsl/actions/workflows/build.yml)
 
 ![screenshot](https://github.com/arfshl/void-wsl/raw/main/image.png)
