@@ -20,7 +20,7 @@ digest1=$(echo "$manifest1" | jq -r ".manifests[] | select(.platform.architectur
 digest2=$(echo "$manifest2" | jq -r ".manifests[] | select(.platform.architecture == \"$ARCH\") | .digest")
 # Pull and Export image
 docker pull "ghcr.io/void-linux/void-musl:latest@${digest1}"
-ocker pull "ghcr.io/void-linux/void-glibc:latest@${digest2}"
+docker pull "ghcr.io/void-linux/void-glibc:latest@${digest2}"
 docker export $(docker create "ghcr.io/void-linux/void-musl:latest@${digest1}") | xz -T 0 > "$GITHUB_WORKSPACE/void.tar.xz"
 docker export $(docker create "ghcr.io/void-linux/void-glibc:latest@${digest2}") | xz -T 0 > "$GITHUB_WORKSPACE/void-musl.tar.xz"
 # start build
