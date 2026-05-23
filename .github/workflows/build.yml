@@ -65,8 +65,10 @@ jobs:
           tag_name: latest
           name: latest
           files: |
-            void-*.wsl
-            void-*.wsl
+            void-glibc-amd64.wsl
+            void-glibc-arm64.wsl
+            void-musl-amd64.wsl
+            void-musl-arm64.wsl
           preserve_order: true
           make_latest: true
 
