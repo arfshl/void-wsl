@@ -25,7 +25,7 @@ Based on [Official Void docker image](https://github.com/void-linux/void-contain
 ### Other WSL distributions
 
 [![alpine-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=alpine-wsl&theme=transparent)](https://github.com/arfshl/alpine-wsl)
-[![ubuntu-latest-WSL](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=ubuntu-latest-wsl&theme=transparent)](https://github.com/arfshl/ubuntu-latest-wsl)
+[![ubuntu-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=ubuntu-wsl&theme=transparent)](https://github.com/arfshl/ubuntu-wsl)
 [![debian-rolling-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=debian-rolling-wsl&theme=transparent)](https://github.com/arfshl/debian-rolling-wsl)
 [![devuan-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=devuan-wsl&theme=transparent)](https://github.com/arfshl/devuan-wsl)
 [![trisquel-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=trisquel-wsl&theme=transparent)](https://github.com/arfshl/trisquel-wsl)
