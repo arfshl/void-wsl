@@ -1,33 +1,27 @@
 #!/bin/sh
+export RELEASE=$(curl -s https://repo-default.voidlinux.org/live/current/ | grep -oP 'void-x86_64-ROOTFS-\K[0-9]{8}' | sort -V -r | head -n 1)
 ARCH=$(uname -m)
 case "$ARCH" in
-    x86_64) ARCH=amd64 ;;
-    amd64) ARCH=amd64 ;;
-    aarch64) ARCH=arm64 ;;
-    arm64) ARCH=arm64 ;;
+    x86_64) ARCH=x86_64 ;;
+    amd64) ARCH=x86_64 ;;
+    aarch64) ARCH=aarch64 ;;
+    arm64) ARCH=aarch64 ;;
     *)
         echo "Unsupported architecture: $ARCH"
         exit 1
         ;;
 esac
+echo "RELEASE=$RELEASE" >> "$GITHUB_OUTPUT"
 echo "ARCH=$ARCH" >> "$GITHUB_OUTPUT"
 
-# Fetch image manifest
-manifest1=$(docker manifest inspect ghcr.io/void-linux/void-musl:latest)
-manifest2=$(docker manifest inspect ghcr.io/void-linux/void-glibc:latest)
-# Fetch image digest
-digest1=$(echo "$manifest1" | jq -r ".manifests[] | select(.platform.architecture == \"$ARCH\") | .digest")
-digest2=$(echo "$manifest2" | jq -r ".manifests[] | select(.platform.architecture == \"$ARCH\") | .digest")
-# Pull and Export image
-docker pull "ghcr.io/void-linux/void-musl:latest@${digest1}"
-docker pull "ghcr.io/void-linux/void-glibc:latest@${digest2}"
-docker export $(docker create "ghcr.io/void-linux/void-musl:latest@${digest1}") | xz -T 0 > "$GITHUB_WORKSPACE/void.tar.xz"
-docker export $(docker create "ghcr.io/void-linux/void-glibc:latest@${digest2}") | xz -T 0 > "$GITHUB_WORKSPACE/void-musl.tar.xz"
+
 # start build
+curl -LO "https://repo-default.voidlinux.org/live/current/void-$ARCH-ROOTFS-$RELEASE.tar.xz"
+curl -LO "https://repo-default.voidlinux.org/live/current/void-$ARCH-musl-ROOTFS-$RELEASE.tar.xz"
 mkdir -p ./voidwsl
 mkdir -p ./voidwsl-musl
-sudo tar -xJpf void.tar.xz -C ./voidwsl
-sudo tar -xJpf void-musl.tar.xz -C ./voidwsl-musl 
+sudo tar -xJpf void-$ARCH-ROOTFS-$RELEASE.tar.xz -C ./voidwsl
+sudo tar -xJpf void-$ARCH-musl-ROOTFS-$RELEASE.tar.xz -C ./voidwsl-musl 
 sudo cp ./wslconf/oobe.sh ./voidwsl/etc/oobe.sh
 sudo cp ./wslconf/oobe.sh ./voidwsl-musl/etc/oobe.sh
 sudo chmod 644 ./voidwsl/etc/oobe.sh

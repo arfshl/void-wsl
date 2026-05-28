@@ -62,13 +62,13 @@ jobs:
       - name: Release stable
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: latest
-          name: latest
+          tag_name: ${{ needs.build-amd64.outputs.RELEASE }}
+          name: ${{ needs.build-amd64.outputs.RELEASE }}
           files: |
-            void-glibc-amd64.wsl
-            void-glibc-arm64.wsl
-            void-musl-amd64.wsl
-            void-musl-arm64.wsl
+            void-glibc-x86_64.wsl
+            void-glibc-aarch64.wsl
+            void-musl-x86_64.wsl
+            void-musl-aarch64.wsl
           preserve_order: true
           make_latest: true
 
